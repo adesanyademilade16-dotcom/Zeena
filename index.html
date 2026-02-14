@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Zeenat 🌸 | My Forever Valentine</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind for Layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --romance: #db2777;
+            --gold: #fbbf24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0a0a0c;
+            color: #f1f5f9;
+            overflow-x: hidden;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+        .cursive { font-family: 'Dancing Script', cursive; }
+        .elegant { font-family: 'Parisienne', cursive; }
+
+        /* Animated Starry Background */
+        #star-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1e1b4b 0%, #020617 100%);
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* FALLING FROM SKY ANIMATION */
+        .falling-item {
+            position: fixed;
+            top: -10vh;
+            pointer-events: none;
+            z-index: 100;
+            animation: fallDown var(--duration) linear forwards;
+        }
+        @keyframes fallDown {
+            0% { 
+                transform: translateY(0vh) translateX(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(110vh) translateX(var(--sway)) rotate(720deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* Glassmorphism */
+        .glass-ultra {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hero Image Glow */
+        .image-glow {
+            position: relative;
+            padding: 12px;
+            background: linear-gradient(45deg, #db2777, #7c3aed, #fbbf24, #db2777);
+            background-size: 300% 300%;
+            animation: moveGradient 6s ease infinite;
+            border-radius: 50%;
+        }
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Anime Section Transition */
+        .anime-card {
+            transition: all 0.5s ease;
+            filter: grayscale(30%);
+        }
+        .anime-card:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        .btn-romantic {
+            background: linear-gradient(45deg, #db2777, #7c3aed);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-romantic:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(219, 39, 119, 0.4);
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            z-index: 150;
+            width: 55px; height: 55px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 40px rgba(219, 39, 119, 0.3);
+        }
+
+        .fade-line {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="star-container"></div>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="text-center px-6">
+            <div class="mb-8 relative inline-block">
+                <i class="fas fa-heart text-pink-600 text-7xl animate-pulse"></i>
+                <i class="fas fa-heart text-pink-400 text-3xl absolute -top-2 -right-4 animate-bounce"></i>
+            </div>
+            <h2 class="elegant text-5xl md:text-6xl text-white mb-6">Zeenat, A world awaits you...</h2>
+            <p class="text-slate-400 mb-10 tracking-widest uppercase text-xs">To the girl who feels like spring</p>
+            <button onclick="startExperience()" class="btn-romantic text-white font-bold px-12 py-5 rounded-full tracking-tighter text-lg">
+                UNLOCK MY HEART
+            </button>
+        </div>
+    </div>
+
+    <!-- Hidden Audio (Placeholder) -->
+    <audio id="bg-music" loop>
+        <source src="zee.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" class="music-btn hidden" onclick="toggleMusic()">
+        <i id="music-icon" class="fas fa-compact-disc animate-spin text-pink-500 text-xl"></i>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000">
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center pt-24 px-6 relative">
+            <div class="image-glow mb-12 shadow-[0_0_60px_rgba(219,39,119,0.4)]">
+                <div class="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white/20">
+                    <img src="zee2.jpg" alt="Zeenat" class="w-full h-full object-cover transform hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400'">
+                </div>
+            </div>
+            
+            <div class="text-center z-20">
+                <h1 class="cursive text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-violet-400 mb-6 font-bold">
+                    My Beautiful Zeenat ❤️
+                </h1>
+                <p class="elegant text-2xl md:text-3xl text-slate-300 italic">
+                    "In a garden of stars, you are the brightest bloom."
+                </p>
+            </div>
+
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+                <i class="fas fa-chevron-down text-pink-500 text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- Poem Section -->
+        <section class="py-24 px-6">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="glass-ultra p-10 rounded-[3rem] border-pink-500/20">
+                    
+                    <h3 class="elegant text-5xl text-pink-400 mb-12 text-center underline decoration-pink-500/20 underline-offset-8">Zeenat's Essence</h3>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6 group">
+                            <span class="cursive text-5xl text-pink-500 group-hover:scale-125 transition-transform">Z</span>
+                            <p class="text-xl md:text-2xl text-slate-300 pt-2 border-b border-white/5 pb-4 w-full italic">Zenith of beauty, in every grace,</p>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="cursive text-5xl text-pink-500 group-hover:scale-125 transition-transform">E</span>
+                            <p class="text-xl md:text-2xl text-slate-300 pt-2 border-b border-white/5 pb-4 w-full italic">Every smile lights up this place.</p>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="cursive text-5xl text-pink-500 group-hover:scale-125 transition-transform">E</span>
+                            <p class="text-xl md:text-2xl text-slate-300 pt-2 border-b border-white/5 pb-4 w-full italic">Endless warmth within your eyes,</p>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="cursive text-5xl text-pink-500 group-hover:scale-125 transition-transform">N</span>
+                            <p class="text-xl md:text-2xl text-slate-300 pt-2 border-b border-white/5 pb-4 w-full italic">Nobler than the morning skies.</p>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="cursive text-5xl text-pink-500 group-hover:scale-125 transition-transform">A</span>
+                            <p class="text-xl md:text-2xl text-slate-300 pt-2 border-b border-white/5 pb-4 w-full italic">All my heart belongs to you,</p>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="cursive text-5xl text-pink-500 group-hover:scale-125 transition-transform">T</span>
+                            <p class="text-xl md:text-2xl text-slate-300 pt-2 w-full italic">Timeless, deep, and ever true.</p>
+                        </div>
+                    </div>
+                <div class="order-1 md:order-2">
+                    <div class="anime-card rounded-[3rem] overflow-hidden shadow-2xl border border-white/10">
+                        <img src="zee.jpg" class="w-full h-70 md:h-[600px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Love Letter Section -->
+        <section class="py-20 px-6">
+            <div class="max-w-3xl mx-auto glass-ultra p-12 rounded-[4rem] text-center border-white/5 relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-pink-600 px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase">Love Note</div>
+                <div id="love-letter" class="text-xl md:text-2xl text-slate-200 leading-relaxed font-light">
+                    <p class="mb-8">Zeenat, You feel like one of those rare moments in life that you don’t want to rush. 
+                    The kind you just sit with and smile about. 
+                    You make ordinary days feel meaningful — and that’s something special.</p>
+                    <p class="cursive text-3xl text-pink-400">You are my peace, my home, and my favorite adventure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Surprise Reveal -->
+        <section class="min-h-screen flex flex-col items-center justify-center py-32 px-6 text-center">
+            <div id="valentine-reveal" class="z-20">
+                <button onclick="revealValentine(this)" class="btn-romantic text-white font-bold px-16 py-8 rounded-full text-xl shadow-[0_0_50px_rgba(219,39,119,0.3)]">
+                    Tap if you smiling now 🥰 💫
+                </button>
+            </div>
+            
+            <div id="final-message" class="hidden opacity-0 transition-all duration-1000 scale-90 z-20">
+                <h2 class="elegant text-6xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-400 mb-8 glow-text">
+                    Happy Valentine's Day! ❤️
+                </h2>
+                <p class="cursive text-4xl md:text-5xl text-white">To the best girl in the entire world, Zeenat.</p>
+                <div class="mt-12 flex justify-center gap-6 text-pink-500 text-4xl">
+                    <i class="fas fa-heart animate-bounce"></i>
+                    <i class="fas fa-heart animate-bounce" style="animation-delay: 0.2s"></i>
+                    <i class="fas fa-heart animate-bounce" style="animation-delay: 0.4s"></i>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-20 text-center border-t border-white/5 bg-black/20">
+            <p class="text-[10px] uppercase tracking-[0.6em] text-slate-500">Created with Infinite Love for Zeenat</p>
+        </footer>
+    </div>
+
+    <script>
+        function initStars() {
+            const container = document.getElementById('star-container');
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2.5 + 'px';
+                star.style.width = size; star.style.height = size;
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+                container.appendChild(star);
+            }
+        }
+
+        function createFallingItem() {
+            const icons = ['fa-heart', 'fa-spa', 'fa-leaf', 'fa-snowflake', 'fa-certificate', 'fa-star'];
+            const colors = ['#db2777', '#f472b6', '#fbbf24', '#fca5a5', '#d8b4fe', '#ffffff'];
+            
+            const el = document.createElement('i');
+            el.className = `fas ${icons[Math.floor(Math.random() * icons.length)]} falling-item`;
+            
+            const left = Math.random() * 100 + 'vw';
+            const duration = Math.random() * 2 + 3 + 's'; 
+            const sway = (Math.random() * 300 - 150) + 'px';
+            const size = Math.random() * 20 + 15 + 'px';
+
+            el.style.left = left;
+            el.style.fontSize = size;
+            el.style.color = colors[Math.floor(Math.random() * colors.length)];
+            el.style.setProperty('--duration', duration);
+            el.style.setProperty('--sway', sway);
+            
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 6000);
+        }
+
+        function startExperience() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-content');
+            const music = document.getElementById('bg-music');
+            
+            splash.style.opacity = '0';
+            splash.style.transform = 'scale(1.1)';
+            
+            setTimeout(() => {
+                splash.style.display = 'none';
+                main.classList.remove('opacity-0');
+                document.getElementById('music-control').classList.remove('hidden');
+                music.play().catch(e => console.log("Audio waiting for user interaction"));
+                
+                // Initial burst of falling joy
+                for(let i=0; i<30; i++) setTimeout(createFallingItem, i * 100);
+                setInterval(createFallingItem, 500); 
+                revealLines();
+            }, 1200);
+        }
+
+        function revealLines() {
+            const lines = document.querySelectorAll('.fade-line');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        entry.target.style.transition = "all 0.8s ease-out";
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            lines.forEach(line => observer.observe(line));
+        }
+
+        function revealValentine(btn) {
+            btn.style.opacity = '0';
+            btn.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                const final = document.getElementById('final-message');
+                final.classList.remove('hidden');
+                setTimeout(() => {
+                    final.classList.add('opacity-100', 'scale-100');
+                    // INTENSE SHOWER
+                    setInterval(createFallingItem, 150);
+                }, 100);
+            }, 600);
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            if(music.paused) {
+                music.play();
+                icon.classList.add('animate-spin');
+            } else {
+                music.pause();
+                icon.classList.remove('animate-spin');
+            }
+        }
+
+        window.onload = initStars;
+    </script>
+</body>
+</html>
